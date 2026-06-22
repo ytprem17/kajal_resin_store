@@ -68,3 +68,29 @@ window.location.href =
 "index.html";
 
 }
+
+
+const mobileAccount =
+document.getElementById("mobileAccount");
+
+const mobileAccountText =
+document.getElementById("mobileAccountText");
+
+if(user){
+
+if(mobileAccount){
+mobileAccount.href = "wishlist.html";
+}
+
+if(mobileAccountText){
+mobileAccountText.textContent =
+user.name;
+}
+
+}else{
+
+if(mobileAccount){
+mobileAccount.href = "login.html";
+}
+
+}
