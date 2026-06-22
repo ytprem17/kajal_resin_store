@@ -4,17 +4,32 @@ document.getElementById("userMenu");
 const loginLink =
 document.getElementById("loginLink");
 
+const mobileAccount =
+document.getElementById("mobileAccount");
+
+const mobileAccountText =
+document.getElementById("mobileAccountText");
+
 const user =
 JSON.parse(
 localStorage.getItem("user")
 );
 
+// =====================
+// USER LOGGED IN
+// =====================
+
 if(user){
 
-// Login button hide
+// Hide Login Button
+
 if(loginLink){
 loginLink.style.display = "none";
 }
+
+// Desktop User Menu
+
+if(userMenu){
 
 userMenu.innerHTML = `
 
@@ -47,14 +62,58 @@ onclick="logoutUser()">
 
 `;
 
-}else{
+}
 
-// Login nahi hai
-userMenu.innerHTML = "";
+// Mobile Bottom Navigation
+
+if(mobileAccount){
+mobileAccount.href =
+"wishlist.html";
+}
+
+if(mobileAccountText){
+mobileAccountText.textContent =
+user.name;
+}
 
 }
 
+// =====================
+// USER NOT LOGGED IN
+// =====================
+
+else{
+
+if(userMenu){
+userMenu.innerHTML = "";
+}
+
+if(mobileAccount){
+mobileAccount.href =
+"login.html";
+}
+
+if(mobileAccountText){
+mobileAccountText.textContent =
+"Account";
+}
+
+}
+
+// =====================
+// LOGOUT
+// =====================
+
 function logoutUser(){
+
+const confirmLogout =
+confirm(
+"Are you sure you want to logout?"
+);
+
+if(!confirmLogout){
+return;
+}
 
 localStorage.removeItem(
 "user"
@@ -66,31 +125,5 @@ alert(
 
 window.location.href =
 "index.html";
-
-}
-
-
-const mobileAccount =
-document.getElementById("mobileAccount");
-
-const mobileAccountText =
-document.getElementById("mobileAccountText");
-
-if(user){
-
-if(mobileAccount){
-mobileAccount.href = "wishlist.html";
-}
-
-if(mobileAccountText){
-mobileAccountText.textContent =
-user.name;
-}
-
-}else{
-
-if(mobileAccount){
-mobileAccount.href = "login.html";
-}
 
 }
